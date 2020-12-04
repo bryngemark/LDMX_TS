@@ -2,7 +2,7 @@ from ts_digi_container import *
 import ROOT as r
 
 ## initialize container
-cont = ts_digi_container('test.root','LDMX_Events')
+cont = ts_digi_container('clustered_ldmx_run7_doublebars_run7_1e_10000events.root','LDMX_Events')
 cont.get_digi_collection('trigScintDigisTag_sim')
 cont.get_digi_collection('trigScintDigisUp_sim')
 cont.get_digi_collection('trigScintDigisDn_sim')
@@ -15,9 +15,9 @@ r.gROOT.ProcessLine(".L tdrstyle.C")
 r.gROOT.ProcessLine("setTDRStyle()")
 
 ## initialize root histogram
-hist = r.TH1F("test","Title;Photo-electrons;Events",40,0,200)
-hBeamEfrac = r.TH1F("hBeamEfrac","beam fraction histo;Fraction of energy deposited by beam electrons;Clusters",101,0,1.01)
-hBeamEfracTracks = r.TH1F("hBeamEfracTracks","beam fraction histo;Fraction of energy deposited by beam electrons;Tracks",101,0,1.01)
+hist = r.TH1F("ldmx_run7_doublebars_clustered_1e_100R_10000events","Title;Photo-electrons;Events",40,0,200)
+hBeamEfrac = r.TH1F("hBeamEfrac_run7_doublebars_1e_100R_10000events","beam fraction histo;Fraction of energy deposited by beam electrons;Clusters",101,0,1.01)
+hBeamEfracTracks = r.TH1F("hBeamEfracTracks_run7_doublebars_1e_100R_10000events","beam fraction histo;Fraction of energy deposited by beam electrons;Tracks",101,0,1.01)
 
 ## loop over events
 for i in range(cont.tree.numentries):

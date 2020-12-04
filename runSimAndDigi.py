@@ -16,7 +16,7 @@ from LDMX.EventProc.trigScintDigis import TrigScintDigiProducer
 from LDMX.Framework import ldmxcfg
 
 
-nEv = 1000
+nEv = 10000
 
 if len(sys.argv) < 1 :
     print("The number of beam electrons has to be specified. Use (positional) argument 1 for it.")
@@ -58,7 +58,7 @@ mySim.beamSpotSmear = [20., 80., 0] #mm
 
 from LDMX.Detectors.makePath import *
                                                                       
-mySim.setDetector( 'ldmx-det-v12', True  ) #the true should tell it to include scoring planes
+mySim.setDetector( 'ldmx-det-v12b', True  ) #the true should tell it to include scoring planes
 mySim.scoringPlanes = makeScoringPlanesPath('ldmx-det-v12')
 
 
@@ -93,6 +93,10 @@ tsDigisDown  =TrigScintDigiProducer.down()
 tsDigisUp.pe_per_mip = 100.
 tsDigisTag.pe_per_mip = tsDigisUp.pe_per_mip
 tsDigisDown.pe_per_mip = tsDigisUp.pe_per_mip
+
+tsDigisTag.number_of_strips = 100
+tsDigisUp.number_of_strips = 100
+tsDigisDown.number_of_strips = 100
 
 # add these to the sequence of processes the code should run
 p.sequence=[ mySim, tsDigisUp, tsDigisTag, tsDigisDown ]
