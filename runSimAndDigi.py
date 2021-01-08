@@ -95,6 +95,10 @@ tsDigisDown.pe_per_mip = tsDigisUp.pe_per_mip
 # add these to the sequence of processes the code should run
 p.sequence=[ mySim, tsDigisUp, tsDigisTag, tsDigisDown ]
 
+#drop scoring plane hits we won't be using anyway
+p.keep = [ "drop MagnetScoringPlaneHits", "drop TrackerScoringPlaneHits", "drop HcalScoringPlaneHits"]
+
+
 # Provide the list of output files to produce
 #   When using the simulator to produce events, only one output file is necessary
 

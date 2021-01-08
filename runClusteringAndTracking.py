@@ -15,8 +15,8 @@ p=ldmxcfg.Process("digi")
 
 #load the template trigger scintillator clustering and tracking configuration files
 
-from LDMX.EventProc.trigScint import TrigScintClusterProducer
-from LDMX.EventProc.trigScint import trigScintTrack
+from LDMX.TrigScint.trigScint import TrigScintClusterProducer
+from LDMX.TrigScint.trigScint import trigScintTrack
 
 
 #clustering: seeding threshold 
