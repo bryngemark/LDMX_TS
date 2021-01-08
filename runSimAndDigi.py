@@ -4,19 +4,24 @@
 import sys
 import os
 
+# we need the ldmx configuration package to construct the object
+from LDMX.Framework import ldmxcfg
+
+# first, we define the process, which must have a name which identifies this processing pass ("pass name").
+# it's pretty arbitrary but you will see it in the final collection names.
+p=ldmxcfg.Process("sim")
+
 
 from LDMX.SimCore import generators as gen
 from LDMX.SimCore import simulator
 from LDMX.Biasing import filters
 from LDMX.SimCore import simcfg
 
-from LDMX.EventProc.trigScintDigis import TrigScintDigiProducer
+from LDMX.TrigScint.trigScint import TrigScintDigiProducer
 
-# we need the ldmx configuration package to construct the object
-from LDMX.Framework import ldmxcfg
+import LDMX.Ecal.EcalGeometry
 
-
-nEv = 1000
+nEv = 100
 
 if len(sys.argv) < 1 :
     print("The number of beam electrons has to be specified. Use (positional) argument 1 for it.")
@@ -35,23 +40,16 @@ if len(sys.argv) > 3 :
 else:
     outputName="ldmx_upstreamElectron"
 
-seed1=int(2*runNb)
-seed2=seed1+1
-
 doPoisson = False #set to true to get poisson varied number of beam electrons instead of fixed
 
 
 # ------------------- all set; setup in detail, and run with these settings ---------------
 
 
-# first, we define the process, which must have a name which identifies this processing pass ("pass name").
-# it's pretty arbitrary but you will see it in the final collection names.
-p=ldmxcfg.Process("sim")
 
 mySim = simulator.simulator("mySim")
 mySim.runNumber = runNb
 mySim.description = "Upstream 4 GeV "+nPart+"-electron beam"
-mySim.randomSeeds = [ seed1, seed2 ]
 mySim.beamSpotSmear = [20., 80., 0] #mm
 
 # get the path to the installed detector description
