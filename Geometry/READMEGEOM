@@ -1,0 +1,156 @@
+This README file will give a brief description of all the files included in this directory. The files will need some manipulation before being used,
+also many of these files are designed to work in tandem with ldmx and ldmx_ts. Both will be needed. I will include a skeleton diagram of input and output files
+to help with this as well as how I would run them once they are "cleaned up" to run on your machine.
+
+runner1/2.sh
+
+These are the instances of the sh file which can automatically run over detector geometries. I am not certain 
+which one is immediattely available to be compiled; I would run each and see if either breaks down. Then investigate each of 
+the filechanger/markitdownfiles. Furthermore it will also talk to runSimAndDigi (etc) included in Modifications of LDMX_TS Software, 
+so wherever one of those files is mentioned you may check for issues there. I think its the case that runner.sh has some obsolete logging being done,
+and thats the main difference.
+
+(runner.sh)
+input:N/A
+output:copyitdownFORREALDay3.txt
+(runner2.sh)
+input:N/A
+output:logFile4.txt
+
+filechanger2.py
+
+This file automatically changes the parameters of the detector in ldmx/Detector/.../constants.gdml (and possibly elsewhere) so that the above 
+function can run over all the possible values of detector geometries. Certain columns of the gdml file are changed by adding to runner.sh the first
+number 35,36,etc corresponding to the line number of the constant, and then the value which corresponds to the value desired.
+
+input:N/A
+output:N/A
+(Does things internally; internally it takes parameters from runner2.sh and changes gdml files in ldmx-sw)
+
+
+ThrowAway.py
+
+Takes information from logFile.txt and from runner2.sh (more specifically when runner2.sh ran testanalyzer2.py from LDMX_TS). The idea was
+to plot some metric like the number of overcounting events over total events vs detector geometries. Again exhaustive searches became obsolete, 
+but is all here if you want to play with it.
+
+input:logFile.txt
+output:N/A (an image)
+
+ALOT OF THE FOLLOWING FILES ARE NOT IMPLMENTED IN RUNNER.SH (SOMETIMES BECAUSE THEY ARE OBSOLETE). 
+I have included them in case you find a use for the obsolte functions. They are mainly the obsolete logging mentioned the description of runner.sh (NOT runner2.sh)
+##########################################################################################
+
+filechanger.py
+
+Not currently implemented anywhere, but the first instance of automatic gdml changing. filechanger2 was created to more generally allow the
+changing of any number of constants.
+
+input:N/A
+output:N/A
+(Does things internally; inside it takes again constants and changes the gdml files)
+
+filechanger3.py
+
+Obsolete file. Logs the second value j of the constant gdml file (I believe its scintillator bar width). Included so that the file will run hopefully 
+without extra modifications necessary (it may need to be enabled to keep track of parameters if you don't do that yourself).
+
+input:N/A
+output:N/A
+(Does things internally; inside it takes parameters and changes logFile.txt (supposed to be logFile4.txt like filechanger2.py
+
+markitdown.py
+
+copied down the extra number of tracks after runSimAndDigi was run before its capabilities were incorporated into testanalyzer. 
+
+input:N/A
+output:N/A
+
+done internally. Takes detector parameters and puts them into the file
+
+markitdowncluster.py
+
+copied down the goemetry parameters of a particular geometry. No longer implemented into either of the .sh files.
+
+input:N/A
+output:N/A
+
+done internally. Takes detector parameters and puts them into the file (in logFile.txt)
+
+#############################################################################################
+
+NOW FOR THE MODIFICATIONS TO LDMX_TS files (move to that directory to see the files described herein)
+
+test_analyzer.py
+
+Obsolete file used for analysis in runner.sh. Did not itself calculate confusion matrix elements. It rather plotted every event and the number of tracks found therein
+
+input:autorunout.root
+output:copyitdownFORREALDay3.txt
+
+test_analyzer2.py
+
+Used in tandem with runner2.sh to fund confusion matrices for a particular geometry. Also used solo with just runClusteringAndTracking and runSumAndDigi in 
+case you wanted to focus on promising geometries instead of an exhaustive search approach. Generated confusion matrix entries for a particular num of electron
+and logged it in logFile.txt
+
+input:autorunout.root
+output:logFile4.txt
+
+runSumAndDigi.py
+
+Runs the simulation on the gdml detector to get detector hits on the ldmx detector. Not mine and early creation. I only include it because the naming conventions used are not
+immediattely the same as the original
+
+input:N/A
+output:autorun.root
+
+runClusteringAndTracking.py
+
+Takes the hits from SimAndSDigi and obtains the Clusters and Tracks which we check for overcounting.
+
+input:autorun.root
+output:autorunout.root
+
+##########################################################################################################################
+
+Running over the parameters automatically
+
+Step 1: Make sure all the files are all in the right places. I would suggest you use runner2.sh. In that case you will need to change the file paths in runner2.sh to indicate
+to your ldmx source, root source (wherever it is on your machine), then you will need to put filechanger2 and filechanger3 in the same directory as runner.sh. Finally you need to change
+the LDMX_TS directory to whatever you are using and change runSimAndDigi, runTrackingAndClustering to the ones we have here. After these steps are performed you run
+
+cd {directory you put runner.sh and filechanger, etc, in}
+chmod 777 runner.sh
+./runner.sh
+
+and it should all be done automatically
+
+Step2: Take logFile.txt and plug it into ThrowAway.py (i.e. put it in the same directory as ThrowAway.py). Then run ThrowAway.py on an indepedent python editor (this is what I did, and I am not
+certain it would work from the shell as is). You will need to change the name of the file in ThrowAway.py to "logFile.txt". As you can see it is still in the form that it takes data from runner.sh
+If you find that this implementation using runner2.sh, do all the steps I describe but for runner.sh. The issue is that markitdown OR markitdown cluster, whatever python files were used to copy
+down the parameters, aren't working anymore and the pythhon file isn''t parsing them out appropriattely. This should be as simple as reincorporating them into the command sequence of runner.sh (in which case you would
+imcorporate markitdown.py) or runner2.sh (you would use markitdowncluster.py).
+
+Again this, unlike the BDT, has alot of things like file paths, which are computer and implementation dependent. Furthermore you will need to reincorporate the markitdown.py files likely to get ThrowAway.py
+working. Otherwise you can write up a python file to parse logFile.txt (not to hard, and you can follow the example of markitdown.py which is really short).
+
+Running over promising instances, specifically tagger.gdml included here.
+
+Step 1: change out tagger.gdml
+
+cp ./tagger.gdml {whereitslocated}/ldmx-sw/Detectors/data/ldmx-det-v12/tagger.gdml
+
+Step 2: Run sim and tracking/clustering algorithm:
+
+source ../ldmx-sw/scripts/ldmx-env.sh
+
+ldmx fire ../LDMX_TS-master/LDMX_TS-master/runSimAndDigi.py 2 1 autorun
+
+ldmx fire ../LDMX_TS-master/LDMX_TS-master/runClusteringAndTracking.py 2 autorun.root autorunout.root
+
+Again you may have pathing issues, but you should link to wherever your ldmx environment is, and also where LDMX_TS is.
+
+You should now have autorunout.root. This was where I stopped. I could only draw some of the slabs, and then plot TrackTaggerCluster.x:TrackTaggerCluster.y as a 2d histogram
+and could (keeping the beamspread large enough in runSimAndDigi.py) that the active region was exactly what was expected and in the manner we somewhat verfied the geometries worked.
+Again we need to do geometry visualization from ldmx-sw/EventDisplay to be really sure for certain (which may be above your pay grade bc its really really rooouuugh).

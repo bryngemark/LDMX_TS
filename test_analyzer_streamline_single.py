@@ -37,19 +37,19 @@ if (hist_dim == '2D'):
 ## initialize root histogram
 
 #conventional 1D histograms
-hist1 = r.TH1F("1e_tag_" + variable + "_100R_sec_BE_spread_overlay","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
-hist2 = r.TH1F("1e_up_" + variable + "_100R_sec_BE_overlay","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
-hist3 = r.TH1F("1e_down_" + variable + "_100R_sec_BE_overlay","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
+hist1 = r.TH1F("1e_tag_" + variable + "_100R_testt","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
+hist2 = r.TH1F("1e_up_" + variable + "_100R_testtt","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
+hist3 = r.TH1F("1e_down_" + variable + "_100R_testtt","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
 hists = [hist1, hist2, hist3]
 
 #energy and pe distributions collated by module, distinguished by beamEfrac
-hist40 = r.TH1F("1e_tag_temp_100R","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
-hist41 = r.TH1F("1e_up_temp_100R","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
-hist42 = r.TH1F("1e_down_temp_100R","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
+hist40 = r.TH1F("1e_tag_temp_100R","Title;" + x_ax + ";1/Integral",xbins,xlow,xhigh)
+hist41 = r.TH1F("1e_up_temp_100R","Title;" + x_ax + ";1/Integral",xbins,xlow,xhigh)
+hist42 = r.TH1F("1e_down_temp_100R","Title;" + x_ax + ";1/Integral",xbins,xlow,xhigh)
 hists_temp = [hist40, hist41, hist42]
-hist43 = r.TH1F("1e_tag_temp2_100R","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
-hist44 = r.TH1F("1e_up_temp2_100R","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
-hist45 = r.TH1F("1e_down_temp2_100R","Title;" + x_ax + ";Hits",xbins,xlow,xhigh)
+hist43 = r.TH1F("1e_tag_temp2_100R","Title;" + x_ax + ";1/Integral",xbins,xlow,xhigh)
+hist44 = r.TH1F("1e_up_temp2_100R","Title;" + x_ax + ";1/Integral",xbins,xlow,xhigh)
+hist45 = r.TH1F("1e_down_temp2_100R","Title;" + x_ax + ";1/Integral",xbins,xlow,xhigh)
 hists_temp2 = [hist43, hist44, hist45]
 
 #odd bar electron emission probability;F(Y)
@@ -63,7 +63,7 @@ if (hist_dim == '2D'):
 	hist7 = r.TH2F("2e_tag_" + variable + "_" + variable2 + "_100R_v2","Title;" + x_ax + ";" + y_ax,xbins,xlow,xhigh,ybins,ylow,yhigh)
 	hist8 = r.TH2F("2e_up_" + variable + "_" + variable2 + "_100R_v2","Title;" + x_ax + ";" + y_ax,xbins,xlow,xhigh,ybins,ylow,yhigh)
 	hist9 = r.TH2F("2e_down_" + variable + "_" + variable2 + "_100R_v2","Title;" + x_ax + ";" + y_ax,xbins,xlow,xhigh,ybins,ylow,yhigh)
-hists = [hist7, hist8, hist9]
+	hists = [hist7, hist8, hist9]
 
 #test for F(Y) metric via projection
 #hist10 = r.TH1F("1e_tag_proj_barID","Title;barID;Hits",50,0,50)
@@ -75,28 +75,28 @@ hists = [hist7, hist8, hist9]
 #hist15 = r.TH1F("1e_down_proj_eep","Title;EEP;Hits",3,0,3)
 #hists_projy = [hist13, hist14, hist15]
 
-#Lauren's conditional odd 1D metric
-hist16 = r.TH1F("2e_tag_aper_odds_100R_allNoiseCuts","Title;barID;Hits",50,0,50)
-hist17 = r.TH1F("2e_up_aper_odds_100R_allNoiseCuts","Title;barID;Hits",50,0,50)
-hist18 = r.TH1F("2e_down_aper_odds_100R_allNoiseCuts","Title;barID;Hits",50,0,50)
+#Lauren's conditional odd 1D metric, G(Y)
+hist16 = r.TH1F("2e_tag_aper_odds_100R_allNoiseCuts","Title;barID;Hits",100,0,100)
+hist17 = r.TH1F("2e_up_aper_odds_100R_allNoiseCuts","Title;barID;Hits",100,0,100)
+hist18 = r.TH1F("2e_down_aper_odds_100R_allNoiseCuts","Title;barID;Hits",100,0,100)
 hists_odds = [hist16, hist17,hist18]
 
 #pure sec adjacent to BE odd metric
-hist19 = r.TH1F("1e_collate_localY_efficiency_100R_odd_summed_pureNoiseCuts","Title;barID (Y);G(Y)",50,0,50)
-hist20 = r.TH1F("2e_up","Title;barID;G(Y)",50,0,50)
-hist21 = r.TH1F("2e_down","Title;barID;G(Y)",50,0,50)
+hist19 = r.TH1F("1e_doublebars_two_layer_efficiency_odds_100R","Title;barID (Y);G(Y)",100,0,100)
+hist20 = r.TH1F("2e_up","Title;barID;G(Y)",100,0,100)
+hist21 = r.TH1F("2e_down","Title;barID;G(Y)",100,0,100)
 hists_odds_adj = [hist19, hist20, hist21]
 
-#Lauren's conditional even 1D metric
-hist22 = r.TH1F("2e_tag_two_layer_prob_100R_allNoiseCuts","Title;barID;Hits",50,0,50)
-hist23 = r.TH1F("2e_up_two_layer_prob_100R_allNoiseCuts","Title;barID;Hits",50,0,50)
-hist24 = r.TH1F("2e_down_two_layer_prob_100R_allNoiseCuts","Title;barID;Hits",50,0,50)
+#Lauren's conditional even 1D metric, G(Y)
+hist22 = r.TH1F("2e_tag","Title;barID;Hits",100,0,100)
+hist23 = r.TH1F("2e_up_two_layer_prob_100R_allNoiseCuts","Title;barID;Hits",100,0,100)
+hist24 = r.TH1F("2e_down_two_layer_prob_100R_allNoiseCuts","Title;barID;Hits",100,0,100)
 hists_evens = [hist22, hist23, hist24]
 
 #pure sec adjacent to BE even metric
-hist25 = r.TH1F("1e_collate_localY_efficiency_100R_even_summed_pureNoiseCuts","Title;barID (Y);P(Y)",50,0,50)
-hist26 = r.TH1F("2e_up_two_layer_prob_100R_1D","Title;barID;G(Y)",50,0,50)
-hist27 = r.TH1F("2e_down_two_layer_prob_100R_1D","Title;barID;G(Y)",50,0,50)
+hist25 = r.TH1F("1e_doublebars_two_layer_efficiency_evens_100R","Title;barID (Y);G(Y)",100,0,100)
+hist26 = r.TH1F("2e_up_two_layer_prob_100R_1D","Title;barID;G(Y)",100,0,100)
+hist27 = r.TH1F("2e_down_two_layer_prob_100R_1D","Title;barID;G(Y)",100,0,100)
 hists_evens_adj = [hist25, hist26, hist27]
 
 #even bar two layer hit probability;F(Y)
@@ -189,18 +189,23 @@ for i in range(cont.tree.numentries):
 	#	adj_sec[l] = 0
     	for k in range(len(params)) :  
 		if ((hist_dim == '1D') and ((pNoise.lower() == 'n') or ((pNoise.lower() == 'y') and (noiseDiscr[k] == False))) and ((sNoise.lower() == 'n') or ((sNoise.lower() == 'y') and ((rnoiseDiscr[k] < 0.01) and (rnoiseDiscr[k] < 0.01)) ))):
+			
+			#standard histogram filling
+			hists[j].Fill(params[k])
+			
+			#local-y coordinate histogram filling
 			#if (barNums[k] % 2 == 0):
 				#yLocal = params[k] - 3*((barNums[k] - 24)/2) - 0.3*((barNums[k] - 24)/2) + 1.5 
 			#if (barNums[k] % 2 != 0):
 				#yLocal = params[k] - 3*((barNums[k] - 25)/2) - 0.3*((barNums[k] - 25)/2)
 		
 			#energy and pe distributions collated by module, distinguished by beamEfrac
-			if (rnoiseDiscr[k] < 0.01): 
-				hists[j].Fill(params[k])
-			if (rnoiseDiscr[k] > 0.9):
-				hists_temp[j].Fill(params[k])
-			if (rnoiseDiscr[k] < 0.9 and rnoiseDiscr[k] > 0.01):
-				hists_temp2[j].Fill(params[k])
+			#if (rnoiseDiscr[k] > 0.9): 
+			#	hists[j].Fill(params[k])
+			#if (rnoiseDiscr[k] < 0.01):
+			#	hists_temp[j].Fill(params[k])
+			#if (rnoiseDiscr[k] < 0.9 and rnoiseDiscr[k] > 0.01):
+			#	hists_temp2[j].Fill(params[k])
 		
 			if (barNums[k] < 50):
                         	hit_dict[barNums[k]] = 1
@@ -228,9 +233,9 @@ for i in range(cont.tree.numentries):
 	#	if ((hist_dim == '1D') and ((pNoise.lower() == 'n') or ((pNoise.lower() == 'y') and (noiseDiscr[k] == False)))):
 	#		hists_fractSec[j].Fill(params[k])
 
-	#if(aper_tog.lower() == 'y'):
-		#bars = hit_dict.keys()
-		#hits = hit_dict.values()
+	if(aper_tog.lower() == 'y'):
+		bars = hit_dict.keys()
+		hits = hit_dict.values()
 	#	bars_beam = beam_e.keys()
 	#	beam_hits = beam_e.values()
 	#	bars_sec = adj_sec.keys()
@@ -246,25 +251,25 @@ for i in range(cont.tree.numentries):
 	#			hists_odds_adj[j].Fill(len(beam_hits)-1)
 
 
-		#for n in range(1,len(bars)-1):
-		#	if ((n % 2 != 0) and (hits[n] != 0)):
+		for n in range(1,len(bars)-1):
+			if ((n % 2 != 0) and (hits[n] != 0)):
 				#encoding for 2D EEP Histograms
-		#		hists_aper[j].Fill(bars[n],aper_ratio(hits[n],hits[n+1],hits[n-1]))
+				hists_aper[j].Fill(bars[n],aper_ratio(hits[n],hits[n+1],hits[n-1]))
 				#encoding for 1D EEP histograms
-		#		hists_odds[j].Fill(n)
-		#		if ((hits[n-1] != 0) or (hits[n+1] != 0)):
-		#			hists_odds_adj[j].Fill(n)
+				hists_odds[j].Fill(n)
+				if ((hits[n-1] != 0) or (hits[n+1] != 0)):
+					hists_odds_adj[j].Fill(n)
 				#hists_projx[j].Fill(bars[n])
 				#hists_projy[j].Fill(aper_ratio(hits[n],hits[n+1],hits[n-1]))
-		#		totlOdd+=1
-		#		if (aper_ratio(hits[n],hits[n+1],hits[n-1]) == 0):
-		#			spltsOdd+=1
-		#if (hits[len(hits)-1] != 0):
-		#	hists_aper[j].Fill(bars[len(hits)-1],(hits[len(hits)-2]/hits[len(hits)-1]))
-		#	hists_odds[j].Fill(len(hits)-1)
-		#	if (hits[len(hits)-2] != 0):
-		#		hists_odds_adj[j].Fill(len(hits)-1)  
-	#if(two_layer_prob.lower() == 'y'):
+				totlOdd+=1
+				if (aper_ratio(hits[n],hits[n+1],hits[n-1]) == 0):
+					spltsOdd+=1
+		if (hits[len(hits)-1] != 0):
+			hists_aper[j].Fill(bars[len(hits)-1],(hits[len(hits)-2]/hits[len(hits)-1]))
+			hists_odds[j].Fill(len(hits)-1)
+			if (hits[len(hits)-2] != 0):
+				hists_odds_adj[j].Fill(len(hits)-1)  
+	if(two_layer_prob.lower() == 'y'):
 	#	bars_beam = beam_e.keys()
          #       beam_hits = beam_e.values()
           #      bars_sec = adj_sec.keys()
@@ -281,24 +286,24 @@ for i in range(cont.tree.numentries):
 
 
 		
-                #bars = hit_dict.keys()
-                #hits = hit_dict.values()
-                #for n in range(2,len(bars)-1):
-                #        if ((n % 2 == 0) and (hits[n] != 0)):
-                #                hists_two_layer[j].Fill(bars[n],aper_ratio(hits[n],hits[n+1],hits[n-1]))
-                #                hists_evens[j].Fill(n)
-                #                if ((hits[n-1] != 0) or (hits[n+1] != 0)):
-                #                       hists_evens_adj[j].Fill(n)
+                bars = hit_dict.keys()
+                hits = hit_dict.values()
+                for n in range(2,len(bars)-1):
+                        if ((n % 2 == 0) and (hits[n] != 0)):
+                                hists_two_layer[j].Fill(bars[n],aper_ratio(hits[n],hits[n+1],hits[n-1]))
+                                hists_evens[j].Fill(n)
+                                if ((hits[n-1] != 0) or (hits[n+1] != 0)):
+                                       hists_evens_adj[j].Fill(n)
                                 #hists_projx[j].Fill(bars[n])
                                 #hists_projy[j].Fill(aper_ratio(hits[n],hits[n+1],hits[n-1]))
-                #                totlEven+=1
-                #               if (aper_ratio(hits[n],hits[n+1],hits[n-1]) == 0):
-                #                        spltsEven+=1
-                #if (hits[0] != 0):
-                #        hists_two_layer[j].Fill(bars[0],(hits[1]/hits[0]))
-                #        hists_evens[j].Fill(0)
-                #        if (hits[1] != 0):
-                #                hists_evens_adj[j].Fill(0)
+                                totlEven+=1
+                        	if (aper_ratio(hits[n],hits[n+1],hits[n-1]) == 0):
+                                        spltsEven+=1
+                if (hits[0] != 0):
+                        hists_two_layer[j].Fill(bars[0],(hits[1]/hits[0]))
+                        hists_evens[j].Fill(0)
+                        if (hits[1] != 0):
+                                hists_evens_adj[j].Fill(0)
 
 
 	
@@ -329,18 +334,26 @@ hists[0].SetLineStyle(1)
 #hists_fractSec[0].SetLineStyle(1)
 #hists[0].Divide(hists[0],hists_fractSec[0],1,1,"B")
 
-if (hist_dim == '1D'):	
+if (hist_dim == '1D'):
+	#beSum = hists[0].Integral()
+	
+	#event source decomposition scaling
+	#hists[0].Scale(1./hists[0].Integral())	
 	hists[0].Draw("h")
 if (hist_dim == '2D'):
 	hists[0].Draw("COLZ")
 
 #energy and pe distributions collated by module, distinguished by beamEfrac
-hists_temp[0].SetLineColor(3)
-hists_temp[0].SetLineStyle(1)
-hists_temp[0].Draw("hsame")
-hists_temp2[0].SetLineColor(5)
-hists_temp2[0].SetLineStyle(1)
-hists_temp2[0].Draw("hsame")
+#hists_temp[0].SetLineColor(3)
+#hists_temp[0].SetLineStyle(1)
+#secSum = hists_temp[0].Integral()
+#hists_temp[0].Scale(1./hists_temp[0].Integral())
+#hists_temp[0].Draw("hsame")
+#hists_temp2[0].SetLineColor(5)
+#hists_temp2[0].SetLineStyle(1)
+#spreadSum = hists_temp2[0].Integral()
+#hists_temp2[0].Scale(1./hists_temp2[0].Integral())
+#hists_temp2[0].Draw("hsame")
 
 c1.SetRightMargin( 5.*c1.GetRightMargin() )
 if (hist_dim == '1D'):
@@ -348,17 +361,18 @@ if (hist_dim == '1D'):
 if (hist_dim == '2D'):
 	leg1 = r.TLegend(0.6,0.7,0.8,0.9)
 if (veto == 'Total Hits'):
-        leg1.SetHeader("Total Hits = " + str(entries_r[0] + entries_f[0]+ entries_r[1] + entries_f[1] + entries_r[2] + entries_f[2]), "C")
+#REMEMBER TO ADD entries_r[1,2] and entries_f[1,2] IF YOU COLLATE ALL THREE ARRAYS ONTO C1 CANVAS
+        leg1.SetHeader("Total Hits = " + str(entries_r[0] + entries_f[0]), "C")
 if (veto == 'Real Electron'):
-        leg1.SetHeader("Electron Hits = " + str(entries_r[0] + entries_r[1] + entries_r[2]), "C")
+        leg1.SetHeader("Electron Hits = " + str(entries_r[0]), "C")
 if (veto == 'Pure Noise'):
-        leg1.SetHeader("Noise Hits = " + str(entries_f[0] + entries_f[1] + entries_f[2]), "C")
-#leg1.AddEntry(hists[0],"Tagger","L")
+        leg1.SetHeader("Noise Hits = " + str(entries_f[0]), "C")
+leg1.AddEntry(hists[0],"Tagger","L")
 
 #energy and pe distributions collated by module, distinguished by beamEfrac
-leg1.AddEntry(hists[0],"Tagger pSec","L")
-leg1.AddEntry(hists_temp[0],"Tagger pBE","L")
-leg1.AddEntry(hists_temp2[0],"Tagger spread","L")
+#leg1.AddEntry(hists[0],"Tagger pBE: " + str(beSum),"L")
+#leg1.AddEntry(hists_temp[0],"Tagger pSec: " + str(secSum),"L")
+#leg1.AddEntry(hists_temp2[0],"Tagger spread: " + str(spreadSum),"L")
 
 leg1.Draw()
 #c1.SetLogz(1)
@@ -374,17 +388,25 @@ hists[1].SetLineStyle(1)
 #hists[1].Divide(hists[1],hists_fractSec[1],1,1,"B")
 
 if (hist_dim == '1D'):
+	#event source decomp scaling
+	#beSum = hists[1].Integral()
+	#hists[1].Scale(1./hists[1].Integral())
+
         hists[1].Draw("h")
 if (hist_dim == '2D'):
         hists[1].Draw("sameCOLZ")
 
 #energy and pe distributions collated by module, distinguished by beamEfrac
-hists_temp[1].SetLineColor(3)
-hists_temp[1].SetLineStyle(1)
-hists_temp[1].Draw("hsame")
-hists_temp2[1].SetLineColor(5)
-hists_temp2[1].SetLineStyle(1)
-hists_temp2[1].Draw("hsame")
+#hists_temp[1].SetLineColor(3)
+#hists_temp[1].SetLineStyle(1)
+#secSum = hists_temp[1].Integral()
+#hists_temp[1].Scale(1./hists_temp[1].Integral())
+#hists_temp[1].Draw("hsame")
+#hists_temp2[1].SetLineColor(5)
+#hists_temp2[1].SetLineStyle(1)
+#spreadSum = hists_temp2[1].Integral()
+#hists_temp2[1].Scale(1./hists_temp2[1].Integral())
+#hists_temp2[1].Draw("hsame")
 
 
 c2.SetRightMargin( 5.*c2.GetRightMargin() )
@@ -400,9 +422,9 @@ if (veto == 'Pure Noise'):
         leg2.SetHeader("Noise Hits = " + str(entries_f[1]), "C")
 
 #energy and pe distributions collated by module, distinguished by beamEfrac
-leg2.AddEntry(hists[1],"Tagger pSec","L")
-leg2.AddEntry(hists_temp[1],"Tagger pBE","L")
-leg2.AddEntry(hists_temp2[1],"Tagger spread","L")
+#leg2.AddEntry(hists[1],"Up pBE: " + str(beSum),"L")
+#leg2.AddEntry(hists_temp[1],"Up pSec: " + str(secSum),"L")
+#leg2.AddEntry(hists_temp2[1],"Up spread: " + str(spreadSum),"L")
 
 
 leg2.Draw()
@@ -419,17 +441,24 @@ hists[2].SetLineStyle(1)
 #hists[2].Divide(hists[2],hists_fractSec[2],1,1,"B")
 
 if (hist_dim == '1D'):
+	#event source decomp scaling
+	#beSum = hists[2].Integral()
+	#hists[2].Scale(1./hists[2].Integral())
         hists[2].Draw("h")
 if (hist_dim == '2D'):
         hists[2].Draw("sameCOLZ")
 
 #energy and pe distributions collated by module, distinguished by beamEfrac
-hists_temp[2].SetLineColor(3)
-hists_temp[2].SetLineStyle(1)
-hists_temp[2].Draw("hsame")
-hists_temp2[2].SetLineColor(5)
-hists_temp2[2].SetLineStyle(1)
-hists_temp2[2].Draw("hsame")
+#hists_temp[2].SetLineColor(3)
+#hists_temp[2].SetLineStyle(1)
+#secSum = hists_temp[2].Integral()
+#hists_temp[2].Scale(1./hists_temp[2].Integral())
+#hists_temp[2].Draw("hsame")
+#hists_temp2[2].SetLineColor(5)
+#hists_temp2[2].SetLineStyle(1)
+#spreadSum = hists_temp2[2].Integral()
+#hists_temp2[2].Scale(1./hists_temp2[2].Integral())
+#hists_temp2[2].Draw("hsame")
 
 c3.SetRightMargin( 5.*c3.GetRightMargin() )
 if (hist_dim == '1D'):
@@ -444,9 +473,9 @@ if (veto == 'Pure Noise'):
 	leg3.SetHeader("Noise Hits = " + str(entries_f[2]), "C")
 
 #energy and pe distributions collated by module, distinguished by beamEfrac
-leg3.AddEntry(hists[2],"Tagger pSec","L")
-leg3.AddEntry(hists_temp[2],"Tagger pBE","L")
-leg3.AddEntry(hists_temp2[2],"Tagger spread","L")
+#leg3.AddEntry(hists[2],"Down pBE: " + str(beSum),"L")
+#leg3.AddEntry(hists_temp[2],"Down pSec: " + str(secSum),"L")
+#leg3.AddEntry(hists_temp2[2],"Down spread: " + str(spreadSum),"L")
 
 leg3.Draw()
 #leg1.AddEntry(hists[2],"Downstream","L")
@@ -543,7 +572,7 @@ if (aper_tog.lower() == 'y'):
 	c13.SetRightMargin( 5.*c13.GetRightMargin() )
 	leg4 = r.TLegend(0.8,0.7,1.0,0.9)
 	leg4.AddEntry(hists_odds_adj[0],"Tagger","L")
-	#hists_odds_adj[0].Draw("he")
+	hists_odds_adj[0].Draw("he")
 
 	#c14 = r.TCanvas("c14", "hist17 canvas", 600,  500)
 	#hists_odds[1].SetFillColor(3)
@@ -556,7 +585,7 @@ if (aper_tog.lower() == 'y'):
 	print(hists_odds_adj[1].GetBinError(2))
 	#c14.SetRightMargin( 5.*c14.GetRightMargin() )
 	leg4.AddEntry(hists_odds_adj[1],"Upstream","L")
-	#hists_odds_adj[1].Draw("hesame")
+	hists_odds_adj[1].Draw("hesame")
 
 	#c15 = r.TCanvas("c15", "hist18 canvas", 600,  500)
 	#hists_odds[2].SetFillColor(3)
@@ -570,9 +599,11 @@ if (aper_tog.lower() == 'y'):
 	#c15.SetRightMargin( 5.*c15.GetRightMargin() )
 	leg4.AddEntry(hists_odds_adj[2],"Downstream","L")
 	leg4.Draw()
-	hists_odds_adj[1].Add(hists_odds_adj[0],hists_odds_adj[1],1,1)
-	hists_odds_adj[2].Add(hists_odds_adj[1],hists_odds_adj[2],1,1)
-	hists_odds_adj[2].Draw("he")
+
+	#combining pads for better stats
+	#hists_odds_adj[1].Add(hists_odds_adj[0],hists_odds_adj[1],1,1)
+	#hists_odds_adj[2].Add(hists_odds_adj[1],hists_odds_adj[2],1,1)
+	hists_odds_adj[2].Draw("hesame")
 
 if (two_layer_prob.lower() == 'y'):
 	c16 = r.TCanvas("c16", "hist19 canvas", 600,  500)
@@ -587,7 +618,7 @@ if (two_layer_prob.lower() == 'y'):
 	c16.SetRightMargin( 5.*c16.GetRightMargin() )
 	leg5 = r.TLegend(0.8,0.7,1.0,0.9)
 	leg5.AddEntry(hists_evens_adj[0],"Tagger","L")
-	#hists_evens_adj[0].Draw("he")
+	hists_evens_adj[0].Draw("he")
 
 	#c17 = r.TCanvas("c17", "hist20 canvas", 600,  500)
 	#hists_evens[1].SetFillColor(3)
@@ -600,7 +631,7 @@ if (two_layer_prob.lower() == 'y'):
 	print(hists_evens_adj[1].GetBinError(1))
 	#c17.SetRightMargin( 5.*c17.GetRightMargin() )
 	leg5.AddEntry(hists_evens_adj[1],"Upstream","L")
-	#hists_evens_adj[1].Draw("hesame")
+	hists_evens_adj[1].Draw("hesame")
 
 	#c18 = r.TCanvas("c18", "hist21 canvas", 600,  500)
 	#hists_evens[2].SetFillColor(3)
@@ -614,9 +645,11 @@ if (two_layer_prob.lower() == 'y'):
 	#c18.SetRightMargin( 5.*c18.GetRightMargin() )
 	leg5.AddEntry(hists_evens_adj[2],"Downstream","L")
 	leg5.Draw()
-	hists_evens_adj[1].Add(hists_evens_adj[0],hists_evens_adj[1],1,1)
-	hists_evens_adj[2].Add(hists_evens_adj[1],hists_evens_adj[2],1,1)
-	hists_evens_adj[2].Draw("he")
+
+	#combining pads for better stats
+	#hists_evens_adj[1].Add(hists_evens_adj[0],hists_evens_adj[1],1,1)
+	#hists_evens_adj[2].Add(hists_evens_adj[1],hists_evens_adj[2],1,1)
+	hists_evens_adj[2].Draw("hesame")
 
 	c19 = r.TCanvas("c19", "hist28 canvas", 600,  500)
         hists_two_layer[0].SetFillColor(2)
@@ -712,7 +745,7 @@ if (aper_tog.lower() == 'y'):
 #c10.SaveAs( hists_projy[0].GetName()+".png")
 #c11.SaveAs( hists_projy[1].GetName()+".png")
 #c12.SaveAs( hists_projy[2].GetName()+".png")
-	c13.SaveAs( hists_odds_adj[0].GetName()+".png")
+	#c13.SaveAs( hists_odds_adj[0].GetName()+".png")
 	#c14.SaveAs( hists_odds_adj[1].GetName()+".png")
 	#c15.SaveAs( hists_odds_adj[2].GetName()+".png")
 if (two_layer_prob.lower() == 'y'):
@@ -727,9 +760,12 @@ if (two_layer_prob.lower() == 'y'):
 #c24.SaveAs( hist37.GetName()+".png")
 
 #readout total, real, and noise RHE's
-print('tRHE = [' + str(float((heven_r[0] + heven_f[0]))/(hodd_r[0] + hodd_f[0])) + ',' + str(float((heven_r[1] + heven_f[1]))/(hodd_r[1] + hodd_f[1]))+ ',' + str(float((heven_r[2] + heven_f[2]))/(hodd_r[2] + hodd_f[2])) + ']')
-print('rRHE = [' + str(float(heven_r[0])/hodd_r[0]) + ',' + str(float(heven_r[1])/hodd_r[1]) + ',' + str(float(heven_r[2])/hodd_r[2]) + ']')
-print('fRHE = [' + str(float(heven_f[0])/hodd_f[0]) + ',' + str(float(heven_f[1])/hodd_f[1]) + ',' + str(float(heven_f[2])/hodd_f[2]) + ']')
+if (((hodd_r[0] + hodd_f[0]) != 0) and ((hodd_r[1] + hodd_f[1]) != 0) and ((hodd_r[2] + hodd_f[2]) != 0)):
+	print('tRHE = [' + str(float((heven_r[0] + heven_f[0]))/(hodd_r[0] + hodd_f[0])) + ',' + str(float((heven_r[1] + heven_f[1]))/(hodd_r[1] + hodd_f[1]))+ ',' + str(float((heven_r[2] + heven_f[2]))/(hodd_r[2] + hodd_f[2])) + ']')
+if (hodd_r[0] != 0 and hodd_r[1] != 0 and hodd_r[2] != 0):
+	print('rRHE = [' + str(float(heven_r[0])/hodd_r[0]) + ',' + str(float(heven_r[1])/hodd_r[1]) + ',' + str(float(heven_r[2])/hodd_r[2]) + ']')
+if (hodd_f[0] != 0 and hodd_f[1] != 0 and hodd_f[2] != 0):
+	print('fRHE = [' + str(float(heven_f[0])/hodd_f[0]) + ',' + str(float(heven_f[1])/hodd_f[1]) + ',' + str(float(heven_f[2])/hodd_f[2]) + ']')
 if (totlOdd != 0):
 	print('EEP Split Prob:' + str((float(spltsOdd)/totlOdd)*100))
 if (totlEven != 0):
