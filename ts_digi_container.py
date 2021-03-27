@@ -53,7 +53,7 @@ class ts_digi_container:
 
     ## Dump an ascii event display and some truth level information
     ## for a list of events. 
-    def dump(self,events):
+    def dump(self,events,coll_name='trigScintDigis'):
 
         print( 'legend: RED noise/secondaries' )
         print( '        PINK mixed secondaries and beam electrons' )
@@ -71,9 +71,9 @@ class ts_digi_container:
             print( 'true number of electrons:',self.get_num_beam_electrons(event) )
             print( 'ecal energy:',self.get_ecal_energy(event) )
             print( format_row.format(*truth_barID) )
-            data = [self.print_array('trigScintDigisTag_sim',event),
-                    self.print_array('trigScintDigisDn_sim',event),
-                    self.print_array('trigScintDigisUp_sim',event)]
+            data = [self.print_array(coll_name+'Tag_sim',event),
+                    self.print_array(coll_name+'Dn_sim',event),
+                    self.print_array(coll_name+'Up_sim',event)]
             for row in data : 
                 print( format_row.format(*row) )
             print( ' - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ' )
@@ -99,9 +99,9 @@ class ts_digi_container:
 
     ## Get total energy as measured in the ecal
     ## this simply sums sim hits and doesn't include reconstruction efects
-    def get_ecal_energy(self,event=-1):
-        self.data.update(self.tree.arrays(['EcalSimHits_sim.edep_']),cache=self.cache)
-        self.data['ecal_total_energy']=map(np.sum,self.data['EcalSimHits_sim.edep_'])
+    def get_ecal_energy(self,event=-1,coll_name='EcalSimHits_sim'):
+        self.data.update(self.tree.arrays([coll_name+'.edep_']),cache=self.cache)
+        self.data['ecal_total_energy']=map(np.sum,self.data[coll_name+'.edep_'])
         if event<0 :
             return self.data['ecal_total_energy']
         if event>=self.tree.numentries :
@@ -110,10 +110,10 @@ class ts_digi_container:
 
     
     ## Get the true number of beam electrons
-    def get_num_beam_electrons(self,event=-1):
-        self.data.update(self.tree.arrays(['SimParticles_sim.first','SimParticles_sim.second.genStatus_','SimParticles_sim.second.pdgID_'],cache=self.cache))
+    def get_num_beam_electrons(self,event=-1,coll_name='SimParticles_sim'):
+        self.data.update(self.tree.arrays([coll_name+'.first',coll_name+'.second.genStatus_',coll_name+'.second.pdgID_'],cache=self.cache))
         if not 'beam_electron' in self.data:
-            self.data['beam_electron'] = (self.data['SimParticles_sim.second.genStatus_']==1)*(self.data['SimParticles_sim.second.pdgID_']==11)
+            self.data['beam_electron'] = (self.data[coll_name+'.second.genStatus_']==1)*(self.data[coll_name+'.second.pdgID_']==11)
             self.data['num_beam_electrons']= map(np.count_nonzero,self.data['beam_electron'])
         if event<0 : 
             return self.data['num_beam_electrons']
@@ -123,13 +123,13 @@ class ts_digi_container:
     
     ## Get y vertex values for each gen-level electron
     ## position is returned in units of barID
-    def get_truth_y(self,event=-1):
+    def get_truth_y(self,event=-1,coll_name='SimParticles_sim'):
         #SimParticles_sim.second.y_
-        if not 'SimParticles_sim.second.y_' in self.data:
-            self.data.update(self.tree.arrays(['SimParticles_sim.second.genStatus_','SimParticles_sim.second.pdgID_','SimParticles_sim.second.y_'],cache=self.cache))
-            self.data['beam_electron'] = (self.data['SimParticles_sim.second.genStatus_']==1)*(self.data['SimParticles_sim.second.pdgID_']==11)
-        self.data['beam_ypos']=self.data['SimParticles_sim.second.y_'][self.data['beam_electron']]
-        self.data['beam_barID']=np.divide(np.subtract(self.data['SimParticles_sim.second.y_'][self.data['beam_electron']],-39.6),1.65)
+        if not coll_name+'.second.y_' in self.data:
+            self.data.update(self.tree.arrays([coll_name+'.second.genStatus_',coll_name+'.second.pdgID_',coll_name+'.second.y_'],cache=self.cache))
+            self.data['beam_electron'] = (self.data[coll_name+'.second.genStatus_']==1)*(self.data[coll_name+'.second.pdgID_']==11)
+        self.data['beam_ypos']=self.data[coll_name+'.second.y_'][self.data['beam_electron']]
+        self.data['beam_barID']=np.divide(np.subtract(self.data[coll_name+'.second.y_'][self.data['beam_electron']],-39.6),1.65)
         if event<0 : 
             return self.data['beam_barID']
         if event>=self.tree.numentries :
