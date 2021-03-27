@@ -23,6 +23,7 @@ import LDMX.Ecal.EcalGeometry
 
 nEv = 100
 
+
 if len(sys.argv) < 1 :
     print("The number of beam electrons has to be specified. Use (positional) argument 1 for it.")
     exit(1)
@@ -73,7 +74,6 @@ mpgGen.momentum = [ 4000.*math.sin(theta) , 0, 4000.*math.cos(theta) ] # MeV
 
 
 
-
 #set this as the simulator's generator
 mySim.generators = [ mpgGen ]
 
@@ -81,7 +81,6 @@ mySim.generators = [ mpgGen ]
 p.sequence = [ mySim ]
 
 # set the maximum number of events to process
-
 p.maxEvents=nEv
 
 
@@ -91,6 +90,7 @@ tsDigisDown  =TrigScintDigiProducer.down()
 tsDigisUp.pe_per_mip = 100.
 tsDigisTag.pe_per_mip = tsDigisUp.pe_per_mip
 tsDigisDown.pe_per_mip = tsDigisUp.pe_per_mip
+
 
 # add these to the sequence of processes the code should run
 p.sequence=[ mySim, tsDigisUp, tsDigisTag, tsDigisDown ]
