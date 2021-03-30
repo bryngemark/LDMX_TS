@@ -35,7 +35,7 @@ clusteringVerbosity=0
 trackingVerbosity=0
 
 #maximum number of events to process  
-nEv = 10000
+nEv = 100
 
 
 if len(sys.argv) < 1 :
