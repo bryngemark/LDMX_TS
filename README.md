@@ -38,7 +38,9 @@ The example script is written in python, and to run it inside the container, jus
 
 `ldmx python test_analyzer.py`
 
-Remember that the container is a little bit of a universe of its own. When it gets set up, the setup script mounts your working directory on the container behind the scenes -- but it can't see your entire file system. Be mindful of this if you try to run scripts that are on completely different paths; either copy them over, or set up the container in that path (pro tip: use a fresh shell for this). 
+The script takes a few optional input arguments; scroll to the bottom of the file to understand them, or run the above command with an additional option `-h` for help.
+
+Remember that the container is a little bit of a universe of its own. When it gets set up, the setup script mounts your working directory on the container behind the scenes -- but it can't see your entire file system. Be mindful of this if you try to run scripts that are on completely different paths; in that case you can "mount" that path on the container (like you would with an external disk like a USB drive) using `ldmx mount /path/where/i/keep/my/data`. Again this needs repeating whenever you're in a fresh shell, after you set up the container. 
 
 
 ## Running event simulation with ldmx-sw
@@ -51,7 +53,6 @@ Run it (after sourcing the env script as indicated above, if you're in a fresh s
 
 The first argument is mandatory.
 Inside the script, you can also change the number of events generated, or if you want to use a fix electron multiplicity per event (default and easiest) or if it should be varied according to a Poisson distribution around the number you specified. Be mindful that a large number of events/electron multiplicity both lead to longer simulation time and larger output files. 
-
 
 
 
