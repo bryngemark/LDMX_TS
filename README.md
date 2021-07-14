@@ -3,9 +3,10 @@ The code depends on a few packages: [ROOT](https://root.cern.ch/downloading-root
 
 To set up the container, run
 
-`source [path-to-ldmx-sw]/ldmx-sw/scripts/ldmx-env.sh -r dev -t unification -b [path-to-ldmx-sw] `
+`source [path-to-ldmx-sw]/ldmx-sw/scripts/ldmx-env.sh -b [path-to-ldmx-sw]`
+`ldmx pull dev unification  `
 
-(where `-b` is the path to the `ldmx-sw` base dir (defaults to `pwd`), `-r` is for repo (for completeness, these can be `dev` (this is what we want), `local` (for something you built yourself), `pro` (for sample production tags)), and `-t` is for `tag`).
+(where `-b` is the path to the `ldmx-sw` base dir (defaults to `path-to/scripts/../../`), `dev` is the `repo` (for completeness, these can be `dev` (this is what we want), `local` (for something you built yourself), `pro` (for sample production tags)), and `unification` is the `tag`).
 
 
 NOTE that `[path-to-ldmx-sw]` should be replaced with any (relative) path to the directory where the `ldmx-sw` directory is located in your setup, or `.` for the present working directory (`pwd`). Run this command **every time** you want to run analysis from a fresh shell.
