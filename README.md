@@ -4,6 +4,9 @@ The code depends on a few packages: [ROOT](https://root.cern.ch/downloading-root
 To set up the container, run
 
 `source [path-to-ldmx-sw]/ldmx-sw/scripts/ldmx-env.sh -b [path-to-ldmx-sw]`
+
+followed by
+
 `ldmx pull dev unification  `
 
 (where `-b` is the path to the `ldmx-sw` base dir (defaults to `path-to/scripts/../../`), `dev` is the `repo` (for completeness, these can be `dev` (this is what we want), `local` (for something you built yourself), `pro` (for sample production tags)), and `unification` is the `tag`).
