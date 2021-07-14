@@ -17,8 +17,8 @@ def main(options,args) :
     for collection in modules :
         cont.get_digi_collection(collection+'_'+passName)
     
-    cont.get_cluster_collection('TriggerPadTaggerClusters_digi')
-    cont.get_track_collection('TriggerPadTracks_digi')
+    cont.get_cluster_collection('TriggerPadTaggerClusters_'+passName)
+    cont.get_track_collection('TriggerPadTracks_'+passName)
     
     ## configuration for pretty root plots
     r.gROOT.ProcessLine(".L tdrstyle.C")
@@ -37,10 +37,10 @@ def main(options,args) :
             for pe in pes : 
                 hist.Fill(pe)
  
-        beamFracC=cont.get_data('TriggerPadTaggerClusters_digi', 'beamEfrac',i)
+        beamFracC=cont.get_data('TriggerPadTaggerClusters_'+passName, 'beamEfrac',i)
         for frac in beamFracC : 
             hBeamEfrac.Fill(frac)
-        beamFracT=cont.get_data('TriggerPadTracks_digi', 'beamEfrac',i)
+        beamFracT=cont.get_data('TriggerPadTracks_'+passName, 'beamEfrac',i)
         for frac in beamFracT : 
             hBeamEfracTracks.Fill(frac)
 
