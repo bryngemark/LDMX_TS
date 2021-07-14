@@ -3,11 +3,10 @@ The code depends on a few packages: [ROOT](https://root.cern.ch/downloading-root
 
 To set up the container, run
 
-`source [path-to-ldmx-sw]/ldmx-sw/scripts/ldmx-env.sh -b [path-to-ldmx-sw]`
-
-followed by
-
-`ldmx pull dev unification  `
+```bash
+source [path-to-ldmx-sw]/ldmx-sw/scripts/ldmx-env.sh -b [path-to-ldmx-sw]
+ldmx pull dev unification  
+```
 
 (where `-b` is the path to the `ldmx-sw` base dir (defaults to `path-to/scripts/../../`), `dev` is the `repo` (for completeness, these can be `dev` (this is what we want), `local` (for something you built yourself), `pro` (for sample production tags)), and `unification` is the `tag`).
 
@@ -21,9 +20,9 @@ the tree user should pass the collection and the data member separately.  Don't 
 the '_' that is printed at the end of the branch name when one executes `TTree::Show`.
 For example you could run the following to get all ECal sim hits.  
 
-```
-get_data('EcalSimHits_sim','edep') # get edep for all events and all sim hits
-get_data('EcalSimHits_sim','edep',10) # get edep for the 11th event and all sim hits
+```python
+get_data('EcalSimHits_sim','edep') # get edep for all sim hits in all events 
+get_data('EcalSimHits_sim','edep',10) # get edep for all sim hits in the 11th event  
 ```
 
 There are also other helpful function that automate various common calculations.  
